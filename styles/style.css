@@ -1,1 +1,363 @@
-/* место для вашего кода */
+/* ===========================================================
+   «Оно тебе надо» — локальные стили
+   global.css задаёт: body width 1100px (центрирован),
+   сброс отступов, a { color: inherit }, img { width: 100% },
+   button { font: inherit }. Здесь — только оформление макета.
+   fonts.css подключает Raleway.
+   =========================================================== */
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+/* ---------- Переиспользуемый оверлей ---------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+/* ---------- Переиспользуемый блок с адресом ---------- */
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 16px;
+  line-height: 1.2;
+  font-style: normal;
+}
+
+.address__link {
+  text-decoration: underline;
+}
+
+/* ===========================================================
+   ШАПКА (шаг 4)
+   =========================================================== */
+.header {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  align-items: center;
+  padding: 40px 50px;
+}
+
+.header__menu {
+  justify-self: start;
+}
+
+.header__links-list {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: circle;
+}
+
+.header__links-list-item {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.header__links-list-item_no-bullit {
+  list-style: none;
+}
+
+.header__link {
+  text-decoration: underline;
+}
+
+.header__link_active {
+  text-decoration: none;
+}
+
+.header__logo {
+  display: block;
+  width: 148px;
+}
+
+.header__address {
+  justify-self: end;
+  max-width: 210px;
+}
+
+/* ===========================================================
+   ОБЛОЖКА / COVER (шаг 5)
+   =========================================================== */
+.cover {
+  position: relative;
+  min-height: 746px;
+  padding: 165px 50px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("../images/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+}
+
+/* всё содержимое обложки — над оверлеем */
+.cover__title,
+.cover__description {
+  position: relative;
+  z-index: 2;
+}
+
+.cover__title {
+  font-size: 100px;
+  line-height: 128px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.aligned-text {
+  display: block;
+}
+
+.aligned-text_left {
+  text-align: left;
+}
+
+.aligned-text_center {
+  text-align: center;
+}
+
+.aligned-text_right {
+  text-align: right;
+  /* компенсируем trailing letter-spacing, чтобы «НАДО» встало вровень с правым краем */
+  margin-right: -0.3em;
+}
+
+/* межбуквенный акцент */
+.letter-spacing-extended {
+  letter-spacing: 0.05em;
+}
+
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+.cover__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cover__description-text {
+  font-size: 22px;
+  line-height: 28px;
+  text-transform: uppercase;
+  word-spacing: 20px;
+}
+
+.bet-button {
+  padding: 20px 60px;
+  border: 1px solid var(--color-white);
+  background-color: transparent;
+  color: var(--color-white);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.bet-button:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* ===========================================================
+   ЛОТЫ (шаг 6)
+   3 карточки по 340px + 2 отступа по 40px = 1100px (ровно в ряд),
+   четвёртая переносится на новую строку.
+   =========================================================== */
+.lots {
+  padding: 80px 24px;
+}
+
+.lots__heading {
+  margin-bottom: 40px;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.lots__card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  list-style: none;
+}
+
+.lots__card-list-item {
+  width: 334px;
+  min-height: 596px;
+}
+
+.card-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+}
+
+/* фоновые картинки карточек */
+.card_type_film {
+  background-image: url("../images/card-lot-01.jpg");
+}
+
+.card_type_book {
+  background-image: url("../images/card-lot-02.jpg");
+}
+
+.card_type_picture {
+  background-image: url("../images/card-lot-03.jpg");
+}
+
+.card__title,
+.card__text {
+  position: relative;
+  z-index: 2;
+}
+
+.card__title {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.card__text {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.lots__look-more-link {
+  display: inline-block;
+  margin-top: 30px;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+/* ===========================================================
+   ОБ АУКЦИОНЕ (шаг 7)
+   левая колонка = ширине карточки (340px), правая — остальное
+   =========================================================== */
+.about {
+  display: grid;
+  grid-template-columns: 334px 1fr;
+  gap: 60px;
+  padding: 80px 50px;
+}
+
+.about__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: var(--color-black);
+}
+
+.about__logo-image {
+  width: 142px;
+}
+
+.about__title {
+  margin-bottom: 40px;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* ===========================================================
+   ПОДВАЛ (шаг 8)
+   grid 1fr 1fr 1fr: адрес слева, меню по центру, соцсети справа
+   =========================================================== */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  min-height: 180px;
+  padding: 40px 50px;
+}
+
+.footer__address {
+  justify-self: start;
+}
+
+.footer__menu {
+  justify-self: center;
+}
+
+.footer__menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  text-align: center;
+}
+
+.footer__menu-list-item {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.footer__menu-link {
+  text-decoration: underline;
+}
+
+.footer__menu-link_active {
+  text-decoration: none;
+}
+
+.footer__social-list {
+  justify-self: end;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.footer__social-link {
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+
+/* у иконок-SVG уже есть своя круглая обводка внутри файла */
+.footer__social-icon {
+  width: 48px;
+  height: 48px;
+}
